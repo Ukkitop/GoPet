@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package = "/pb";
+
+service BatchService {
+  rpc AddWords(AddWordsRequest) returns (AddWordsReply) {}
+}
+
+message AddWordsRequest {
+  repeated Word Words = 1;
+}
+
+message AddWordsReply {
+  string message = 2;
+}
+
+message Word {
+  string Word = 1;
+  string Description = 2;
+  map<string, string> Translations = 3;
+}
+
+
+//protoc *.proto --go_out=./ --go-grpc_out=./
